@@ -18,6 +18,7 @@ import {
     FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
     city: z.string().min(3, {
@@ -26,6 +27,9 @@ const formSchema = z.object({
 });
 
 export function WeatherForm() {
+
+    const router = useRouter();
+
     const [suggestions, setSuggestions] = useState<string[]>([]);
     const [loading, setLoading] = useState(false);
 
@@ -88,7 +92,8 @@ export function WeatherForm() {
 
     // 4. Submit do formulário.
     function onSubmit(values: z.infer<typeof formSchema>) {
-        console.log("Cidade selecionada:", values.city);
+        const city = values.city.split(',')[0].trim().toLowerCase();
+        router.push(`/weather/${city}`)
     }
 
     return (
@@ -135,7 +140,7 @@ export function WeatherForm() {
 
                                 </div>
                             </FormControl>
-                          
+
                             <FormMessage />
                         </FormItem>
                     )}
