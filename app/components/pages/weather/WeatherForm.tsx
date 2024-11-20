@@ -135,15 +135,16 @@ export function WeatherForm() {
 
                                 </div>
                             </FormControl>
-                            <FormDescription>
-                                Please enter the name of the city for which you would like to
-                                check the weather.
-                            </FormDescription>
+                          
                             <FormMessage />
                         </FormItem>
                     )}
                 />
-                <Button type="submit">Submit</Button>
+                <Button
+                    type="submit"
+                >
+                    Submit
+                </Button>
             </form>
         </Form>
     );
