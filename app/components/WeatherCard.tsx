@@ -37,7 +37,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ city }) => {
 
     return (
         <div className="m-10 items-center flex flex-col md:flex-row md:justify-center">
-            <div className="w-72 flex flex-col bg-white p-4 rounded-lg transition duration-500 ease-in-out transform hover:scale-105 cursor-pointer shadow-xl shadow-gray-900/30 dark:shadow-gray-200/40">
+            <div className="w-72 flex flex-col bg-card dark:bg-primary p-4 rounded-lg transition duration-500 ease-in-out transform hover:scale-105 cursor-pointer shadow-xl shadow-foregorund/60 dark:shadow-primary/40">
                 {loading ? (
                     <div className="flex flex-col justify-center items-center h-48">
                         <svg className="pl" width="240" height="240" viewBox="0 0 240 240">
@@ -75,17 +75,17 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ city }) => {
                             </div>
                         </div>
                         <div className="flex flex-row justify-between mt-6">
-                            <div className="flex flex-col items-center">
-                                <div className="font-medium text-sm">Wind</div>
-                                <div className="text-sm text-gray-500">{weatherData.windSpeed}km/h</div>
+                            <div className="flex flex-col items-left">
+                                <div className="font-bold text-sm">Wind</div>
+                                <div className="text-xs dark:font-semibold dark:text-gray-100 uppercase">{weatherData.windSpeed}km/h</div>
                             </div>
                             <div className="flex flex-col items-center">
-                                <div className="font-medium text-sm">Humidity</div>
-                                <div className="text-sm text-gray-500">{weatherData.humidity}%</div>
+                                <div className="font-bold text-sm">Humidity</div>
+                                <div className="text-xs dark:font-semibold dark:text-gray-100 uppercase">{weatherData.humidity}%</div>
                             </div>
-                            <div className="flex flex-col items-center">
-                                <div className="font-medium text-sm">Visibility</div>
-                                <div className="text-sm text-gray-500">{metersToKm(weatherData.visibility)}km</div>
+                            <div className="flex flex-col items-right">
+                                <div className="font-bold text-sm">Visibility</div>
+                                <div className="text-xs dark:font-semibold dark:text-gray-100 uppercase">{metersToKm(weatherData.visibility)}km</div>
                             </div>
                         </div>
                     </>
