@@ -104,14 +104,24 @@ export function WeatherForm() {
                     name="city"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel>City</FormLabel>
+                            <FormLabel className="text-md">City</FormLabel>
                             <FormControl>
                                 <div className="relative">
-                                    <Input className="min-h-[2.5rem]"
-                                        placeholder="Ex. Porto, Portugal"
-                                        {...field}
-                                        onChange={(e) => handleCityChange(e.target.value)}
-                                    />
+                                    <div className="relative flex items-center text-xl min-h-[2.5rem]">
+                                        <Input
+                                            className="h-[3rem]" // Espaço à direita para o botão
+                                            placeholder="Ex. Porto, Portugal"
+                                            {...field}
+                                            onChange={(e) => handleCityChange(e.target.value)}
+                                        />
+                                        <Button
+                                            type="submit"
+                                            className="absolute right-0 h-full px-4 bg-blue-500 text-white"
+                                        >
+                                            Submit
+                                        </Button>
+                                    </div>
+
                                     {/* Lista de sugestões */}
                                     {suggestions.length > 0 && (
                                         <ul
@@ -145,11 +155,7 @@ export function WeatherForm() {
                         </FormItem>
                     )}
                 />
-                <Button
-                    type="submit"
-                >
-                    Submit
-                </Button>
+
             </form>
         </Form>
     );
