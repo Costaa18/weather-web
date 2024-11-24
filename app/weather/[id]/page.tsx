@@ -13,6 +13,9 @@ export default function WeatherByCityPage() {
     }
 
     return (
-        <WeatherByCitySection city={params.id} />
+        <div className="h-[75vh] flex items-center justify-center">
+            <WeatherByCitySection city={params.id} />
+        </div>
+
     )
 }
