@@ -1,7 +1,7 @@
 import { ThemeProvider } from "@/components/theme-provider"
 import { ReactNode } from "react"
 import { Poppins } from 'next/font/google';
-import Header from "@/app/components/Header";
+import Header from "@/app/components/ui/Header";
 import "./globals.css";
 
 const poppins = Poppins({
