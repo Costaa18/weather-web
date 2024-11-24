@@ -118,7 +118,7 @@ export function WeatherForm() {
                                             type="submit"
                                             className="absolute right-0 h-full px-4 bg-blue-500 text-white"
                                         >
-                                            Submit
+                                            Search
                                         </Button>
                                     </div>
 
