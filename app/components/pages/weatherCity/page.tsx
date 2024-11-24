@@ -1,4 +1,4 @@
-import WeatherCard from "../../WeatherCard";
+import WeatherCard from "../../ui/WeatherCard";
 
 type WeatherByCitySectionProps = {
     city: string
