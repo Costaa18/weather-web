@@ -5,6 +5,7 @@ import { getCityByIP } from '@/api/weather/get-by-ip';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Loading from '@/app/components/ui/Loading';
+import { ArrowDown, ArrowUp } from 'lucide-react';
 
 interface WeatherCardProps {
     city?: string;
@@ -78,13 +79,13 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ city }) => {
                         <div className="flex flex-row items-center justify-center mt-6">
                             <div className="font-medium text-6xl">{roundToUnits(weatherData.temperature)}°</div>
                             <div className="flex flex-col items-center ml-6">
-                                <div>{weatherData.weather}</div>
-                                <div className="mt-1">
-                                    <span className="text-sm"><i className="far fa-long-arrow-up"></i></span>
+                                <div >
+                                    <span className='font-bold'>{weatherData.weather}</span>
+                                </div>
+                                <div className="mt-1 flex justify-center">
                                     <span className="text-sm font-light">{roundToUnits(weatherData.tempMax)}°C</span>
                                 </div>
-                                <div>
-                                    <span className="text-sm"><i className="far fa-long-arrow-down"></i></span>
+                                <div className='flex justify-center'>
                                     <span className="text-sm font-light">{roundToUnits(weatherData.tempMin)}°C</span>
                                 </div>
                             </div>
@@ -92,15 +93,15 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ city }) => {
                         <div className="flex flex-row justify-between mt-6">
                             <div className="flex flex-col items-left">
                                 <div className="font-bold text-sm">Wind</div>
-                                <div className="text-xs dark:font-semibold dark:text-gray-100 uppercase">{weatherData.windSpeed}km/h</div>
+                                <div className="text-xs uppercase">{weatherData.windSpeed}km/h</div>
                             </div>
                             <div className="flex flex-col items-center">
                                 <div className="font-bold text-sm">Humidity</div>
-                                <div className="text-xs dark:font-semibold dark:text-gray-100 uppercase">{weatherData.humidity}%</div>
+                                <div className="text-xs uppercase">{weatherData.humidity}%</div>
                             </div>
                             <div className="flex flex-col items-right">
                                 <div className="font-bold text-sm">Visibility</div>
-                                <div className="text-xs dark:font-semibold dark:text-gray-100 uppercase">{metersToKm(weatherData.visibility)}km</div>
+                                <div className="text-xs uppercase">{metersToKm(weatherData.visibility)}km</div>
                             </div>
                         </div>
                     </>
