@@ -3,6 +3,7 @@ import { ReactNode } from "react"
 import { Poppins } from 'next/font/google';
 import Header from "@/app/components/ui/Header";
 import "./globals.css";
+import { Toaster } from 'react-hot-toast';
 
 const poppins = Poppins({
   subsets: ['latin'], // Ajuste o subset conforme necessário
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         </head>
         <body className={poppins.className} >
+          <div><Toaster /></div>
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
