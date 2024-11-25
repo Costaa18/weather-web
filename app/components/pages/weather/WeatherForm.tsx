@@ -104,13 +104,13 @@ export function WeatherForm() {
                     name="city"
                     render={({ field }) => (
                         <FormItem>
-                            <FormLabel className="text-md">City</FormLabel>
+                            <FormLabel className="text-md">Search a City</FormLabel>
                             <FormControl>
                                 <div className="relative">
                                     <div className="relative flex items-center text-xl min-h-[2.5rem]">
                                         <Input
                                             className="h-[3rem]" // Espaço à direita para o botão
-                                            placeholder="Ex. Porto, Portugal"
+                                            placeholder="Ex. Porto, PT"
                                             {...field}
                                             onChange={(e) => handleCityChange(e.target.value)}
                                         />
