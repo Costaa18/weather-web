@@ -1,4 +1,4 @@
-import axios from "axios";
+import api from '@/lib/axios';
 
 type WeatherProps = {
     temperature: number;
@@ -22,7 +22,8 @@ export async function getCityByName(city: string): Promise<WeatherProps | undefi
     try {
         console.log('Cidade: ', city);
 
-        //const weatherResponse = await axios.get<WeatherProps>(`${process.env.NEXT_PUBLIC_API_URL}/weather/city/${city}`,);
+        //const weatherResponse = await api.get<WeatherProps>(`${process.env.NEXT_PUBLIC_API_URL}/weather/city/${city}`,);
+
         const testData = {
             "temperature": 14.55,
             "feelsLike": 14.46,
@@ -43,6 +44,7 @@ export async function getCityByName(city: string): Promise<WeatherProps | undefi
             "visibility": 10000
         }
         return testData;
+
         //return weatherResponse.data;
     } catch (error) {
         console.error('Error fetching weather data:', error);
