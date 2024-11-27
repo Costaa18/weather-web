@@ -7,5 +7,9 @@ const firebaseErrors = {
     "auth/account-exists-with-different-credential": "Já existe uma conta com o mesmo email.",
 };
 
-
-export default firebaseErrors;
+export const getFirebaseErrorMessage = (code: keyof typeof firebaseErrors): string => {
+    if (firebaseErrors[code]) {
+        return firebaseErrors[code];
+    }
+    return "Erro desconhecido.";
+}
