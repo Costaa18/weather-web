@@ -14,29 +14,50 @@ import { Label } from "@/components/ui/label"
 
 import { loginWithGoogle, loginWithGithub } from "@/lib/firebase/authUtils";
 import toast from "react-hot-toast";
+import { getFirebaseErrorMessage } from "@/lib/firebase/firebaseErrors";
+import { checkCookie, setCookie } from "@/lib/cookies";
+import { useRouter } from 'next/navigation'
 
-
-const handleGoogleLogin = async () => {
-    try {
-        const token = await loginWithGoogle();
-        console.log("Token Google JWT:", token);
-        // Envie o token ao backend ou armazene em cookies/localStorage
-    } catch (error) {
-        alert("Erro ao fazer login com Google.");
-    }
-};
-
-const handleGithubLogin = async () => {
-    try {
-        const token = await loginWithGithub();
-        console.log("Token GitHub JWT:", token);
-        // Envie o token ao backend ou armazene em cookies/localStorage
-    } catch (error: any) {
-        toast.error(error.message);
-    }
-};
+import { useEffect } from 'react';
 
 export function LoginForm() {
+    const router = useRouter();
+
+    useEffect(() => {
+        const checkSession = async () => {
+            const hasSession = await checkCookie("session");
+            if (hasSession) {
+                router.push("/");
+            }
+        };
+        checkSession();
+    }, [router]);
+
+    const handleGoogleLogin = async () => {
+        try {
+            const token = await loginWithGoogle();
+            setCookie("session", token);
+            router.push("/");
+        } catch (error) {
+            alert("Erro ao fazer login com Google.");
+        }
+    };
+
+    const handleGithubLogin = async () => {
+        try {
+            const token = await loginWithGithub();
+            setCookie("session", token);
+            router.push("/");
+        } catch (error: any) {
+            console.log(error.code);
+            const errorMessage = getFirebaseErrorMessage(error.code);
+            console.log("ErrorMessage: " + errorMessage);
+            toast.error(errorMessage as string);
+        }
+    };
+
+
+
     return (
         <Card className="mx-auto max-w-sm">
             <CardHeader>
@@ -68,12 +89,17 @@ export function LoginForm() {
                     <Button type="submit" className="w-full">
                         Login
                     </Button>
+                    <div className="flex items-center">
+                        <hr className="flex-1" />
+                        <span className="mx-4 text-sm">or</span>
+                        <hr className="flex-1" />
+                    </div>
                     <Button onClick={handleGoogleLogin} variant="outline" className="w-full">
-                        Login with Google
+                        Sign In with Goole
                     </Button>
 
                     <Button onClick={handleGithubLogin} variant="secondary" className="w-full">
-                        Login with Google
+                        Sign In with Github
                     </Button>
                 </div>
                 <div className="mt-4 text-center text-sm">
