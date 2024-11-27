@@ -2,7 +2,7 @@
 
 import { useParams } from "next/navigation";
 import { notFound } from "next/navigation";
-import WeatherByCitySection from "@/app/components/pages/weatherCity/page";
+import WeatherCard from "@/app/components/ui/WeatherCard";
 
 export default function WeatherByCityPage() {
 
@@ -14,7 +14,9 @@ export default function WeatherByCityPage() {
 
     return (
         <div className="h-[75vh] flex items-center justify-center">
-            <WeatherByCitySection city={params.id} />
+            <section className="relative w-full">
+                <WeatherCard city={params.id} />
+            </section>
         </div>
 
     )
