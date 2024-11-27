@@ -9,7 +9,7 @@ interface UserData {
     emailVerified: boolean;
 }
 
-export async function getCityByName(user: UserData): Promise<UserData | undefined> {
+export async function saveUserToDatabase(user: UserData): Promise<UserData | undefined> {
     try {
         const apiResponse = await api.post<UserData>(`${process.env.NEXT_PUBLIC_API_URL}/users`,);
         apiResponse.data;
