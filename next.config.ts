@@ -10,6 +10,16 @@ const nextConfig: NextConfig = {
         port: '',
         pathname: '/**',
       },
+      {
+        protocol: 'https',
+        hostname: 'lh3.googleusercontent.com',
+        pathname: '/**',  // Permite carregar qualquer imagem do Google
+      },
+      {
+        protocol: 'https',
+        hostname: 'avatars.githubusercontent.com',  // Domínio do GitHub para imagens de perfil
+        pathname: '/**',  // Permite carregar qualquer imagem do GitHub
+      },
     ],
   },
 };
