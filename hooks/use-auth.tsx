@@ -8,7 +8,6 @@ export function useAuth() {
     const [user, setUser] = useState<User | null>(null);
     const [loading, setLoading] = useState(true);
 
-    // Verificação da sessão (cookies)
     const checkSession = useCallback(async () => {
         const session = await checkCookie("session");
         if (!session) {
@@ -17,13 +16,9 @@ export function useAuth() {
         }
     }, []);
 
-    // Efeito para configurar a persistência e verificar o estado de autenticação
     useEffect(() => {
         const setupAuth = async () => {
-            // Configura persistência local para manter o login ativo entre sessões
             await setPersistence(auth, browserLocalPersistence);
-
-            // Verifica o estado do usuário
             const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
                 setUser(currentUser || null);
                 setLoading(false);
