@@ -48,7 +48,6 @@ const UserAvatar = ({ user }: { user: UserInfoProps['user'] }) => (
 
 const handleLogout = () => {
     logout()
-    console.log("Usuário deslogado")
     localStorage.removeItem("firebaseToken")
 }
 
