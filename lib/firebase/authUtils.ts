@@ -1,17 +1,29 @@
 // lib/firebase/authUtils.ts
-import { GoogleAuthProvider, GithubAuthProvider, signInWithPopup } from "firebase/auth";
+import { GoogleAuthProvider, GithubAuthProvider, signInWithPopup, UserCredential } from "firebase/auth";
 import { signOut } from "firebase/auth";
 import { setPersistence, browserLocalPersistence } from "firebase/auth";
 import { auth } from "./firebaseClient";
 import { removeCookie } from "../cookies";
+import { saveUserToDatabase } from "@/api/weather/create-user";
 
 export const loginWithGoogle = async (): Promise<string> => {
   const provider = new GoogleAuthProvider();
   try {
     await setPersistence(auth, browserLocalPersistence);
-    const result = await signInWithPopup(auth, provider);
+    const result: UserCredential = await signInWithPopup(auth, provider);
     const user = result.user;
-    console.log("Usuário logado com Google:", user);
+    const additionalUserInfo = (result as any).additionalUserInfo;
+
+    if (additionalUserInfo?.isNewUser) {
+      await saveUserToDatabase({
+        uid: user.uid,
+        email: user.email ?? '',
+        displayName: user.displayName ?? '',
+        photoURL: user.photoURL ?? '',
+        provider: user.providerId,
+        emailVerified: user.emailVerified,
+      });
+    }
     const token = await user.getIdToken();
     return token;
   } catch (error) {
