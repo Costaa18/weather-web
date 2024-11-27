@@ -1,5 +1,11 @@
-export default function WeatherRoute() {
+import WeatherCard from "../components/ui/WeatherCard";
+
+export default function WeatherPage() {
     return (
-        <p>Hello World</p>
+        <div className="h-[75vh] flex items-center justify-center">
+            <section className="relative w-full">
+                <WeatherCard />
+            </section>
+        </div>
     )
 }
