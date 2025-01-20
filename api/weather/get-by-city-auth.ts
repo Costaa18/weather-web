@@ -19,12 +19,16 @@ type WeatherProps = {
     icon: string;
 }
 
-export async function getCityByName(city: string): Promise<WeatherProps | undefined> {
+export async function getCityBynameAuth(city: string, email: string): Promise<WeatherProps | undefined> {
     try {
         console.log('Cidade: ', city);
 
 
-        const weatherResponse = await axios.get<WeatherProps>(`${process.env.NEXT_PUBLIC_API_URL}/weather/city/${city}`);
+        const weatherResponse = await axios.get<WeatherProps>(`${process.env.NEXT_PUBLIC_API_URL}/weather/city/${city}`, {
+            params: {
+                email: email
+            }
+        });
         /*
         const testData = {
            "temperature": 14.55,

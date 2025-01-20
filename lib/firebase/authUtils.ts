@@ -14,16 +14,14 @@ export const loginWithGoogle = async (): Promise<string> => {
     const user = result.user;
     const additionalUserInfo = (result as any).additionalUserInfo;
 
-    if (additionalUserInfo?.isNewUser) {
+    if (user.email) {
       await saveUserToDatabase({
-        uid: user.uid,
-        email: user.email ?? '',
-        displayName: user.displayName ?? '',
-        photoURL: user.photoURL ?? '',
-        provider: user.providerId,
-        emailVerified: user.emailVerified,
+        email: user.email,
       });
+    } else {
+      console.error("Email invalido");
     }
+
     const token = await user.getIdToken();
     return token;
   } catch (error) {
@@ -31,7 +29,6 @@ export const loginWithGoogle = async (): Promise<string> => {
     throw error;
   }
 };
-
 
 // Login com GitHub
 export const loginWithGithub = async (): Promise<string> => {

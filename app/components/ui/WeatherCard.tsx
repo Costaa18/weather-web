@@ -6,6 +6,8 @@ import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Loading from '@/app/components/ui/Loading';
 import { ArrowDown, ArrowUp } from 'lucide-react';
+import { useAuth } from '@/hooks/use-auth';
+import { getCityBynameAuth } from '@/api/weather/get-by-city-auth';
 
 interface WeatherCardProps {
     city?: string;
@@ -14,14 +16,24 @@ interface WeatherCardProps {
 const WeatherCard: React.FC<WeatherCardProps> = ({ city }) => {
     const [weatherData, setWeatherData] = useState<any>(null);
     const [loading, setLoading] = useState<boolean>(true);
+    const { user, checkSession } = useAuth();
 
     useEffect(() => {
+        checkSession();
         const fetchWeatherData = async () => {
             try {
                 setLoading(true);
                 let data;
                 if (city) {
-                    data = await getCityByName(city);
+                    if(user) {
+                        if (user.email) {
+                            data = await getCityBynameAuth(city, user.email);
+                        } else {
+                            throw new Error('User email is null');
+                        }
+                    } else {
+                        data = await getCityByName(city);
+                    }
                 } else {
                     data = await getCityByIP();
                 }
@@ -62,7 +74,7 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ city }) => {
 
     return (
         <div className="m-10 items-center flex flex-col md:flex-row md:justify-center">
-            <div className="w-72 flex flex-col bg-card dark:bg-primary p-4 rounded-lg transition duration-500 ease-in-out transform hover:scale-105 cursor-pointer shadow-xl shadow-foregorund/60 dark:shadow-primary/40">
+            <div className="w-[25rem] flex flex-col bg-card dark:bg-primary p-4 rounded-lg transition duration-500 ease-in-out transform hover:scale-105 cursor-pointer shadow-xl shadow-foregorund/60 dark:shadow-primary/40">
                 {weatherData ? (
                     <>
                         <div className="font-bold text-xl uppercase">{weatherData.city}, {weatherData.country}</div>

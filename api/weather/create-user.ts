@@ -1,18 +1,13 @@
 import api from '@/lib/axios';
 
 interface UserData {
-    uid: string;
-    displayName: string;
-    email: string;
-    photoURL: string;
-    provider: string;
-    emailVerified: boolean;
+    email?: string;
 }
 
 export async function saveUserToDatabase(user: UserData): Promise<UserData | undefined> {
     try {
-        const apiResponse = await api.post<UserData>(`${process.env.NEXT_PUBLIC_API_URL}/users`,);
-        apiResponse.data;
+        const apiResponse = await api.post<UserData>(`${process.env.NEXT_PUBLIC_API_URL}/users`, user);
+     
         return apiResponse.data;
     } catch (error) {
         console.error('Error fetching weather data:', error);

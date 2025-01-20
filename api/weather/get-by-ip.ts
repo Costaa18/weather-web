@@ -19,8 +19,9 @@ type WeatherProps = {
 }
 
 export async function getCityByIP(): Promise<WeatherProps | undefined> {
-    try {
-        //const weatherResponse = await axios.get<WeatherProps>(`${process.env.NEXT_PUBLIC_API_URL}/weather`);
+    try { 
+        const weatherResponse = await axios.get<WeatherProps>(`${process.env.NEXT_PUBLIC_API_URL}/weather`);
+        /*
         const testData = {
             "temperature": 14.55,
             "feelsLike": 14.46,
@@ -41,7 +42,8 @@ export async function getCityByIP(): Promise<WeatherProps | undefined> {
             "visibility": 10000
         }
         return testData;
-        //return weatherResponse.data;
+        */
+        return weatherResponse.data;
     } catch (error) {
         console.error('Error fetching weather data:', error);
         return undefined;
