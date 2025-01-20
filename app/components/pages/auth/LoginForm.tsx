@@ -48,7 +48,7 @@ export function LoginForm() {
 
   return (
     <Card className="mx-auto max-w-sm lg:max-w-md p-4 sm:p-6 lg:p-8 shadow-lg">
-      <CardContent className="space-y-4">
+      <CardContent className=" p-6 space-y-6">
         <Button
           onClick={handleGoogleLogin}
           variant="outline"

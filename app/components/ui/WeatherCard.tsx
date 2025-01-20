@@ -19,21 +19,12 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ city }) => {
     const { user, checkSession } = useAuth();
 
     useEffect(() => {
-        checkSession();
         const fetchWeatherData = async () => {
             try {
                 setLoading(true);
                 let data;
                 if (city) {
-                    if(user) {
-                        if (user.email) {
-                            data = await getCityBynameAuth(city, user.email);
-                        } else {
-                            throw new Error('User email is null');
-                        }
-                    } else {
-                        data = await getCityByName(city);
-                    }
+                    data = await getCityByName(city);
                 } else {
                     data = await getCityByIP();
                 }
@@ -43,16 +34,12 @@ const WeatherCard: React.FC<WeatherCardProps> = ({ city }) => {
                 console.error('Error fetching weather data:', error);
             } finally {
                 setLoading(false);
-                /*
-                setTimeout(() => {
-                    setLoading(false);
-                }, 2500);
-                */
             }
         };
 
         fetchWeatherData();
     }, [city]);
+        
 
     const userLanguage = typeof navigator !== 'undefined' ? navigator.language : 'en';
     const today = new Date();
