@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev -p 3008 --turbopack",
     "build": "next build",
+    "postinstall": "npm install --force",
     "start": "next start",
     "lint": "next lint"
   },
