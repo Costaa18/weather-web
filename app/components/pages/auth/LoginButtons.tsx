@@ -1,5 +1,4 @@
 // components/LoginButtons.tsx
-import React from "react";
 import { loginWithGoogle, loginWithGithub } from "@/lib/firebase/authUtils";
 
 const LoginButtons = () => {

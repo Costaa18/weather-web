@@ -10,16 +10,13 @@ import axios from "axios";
 import { Button } from "@/components/ui/button";
 import {
     Form,
-    FormControl,
-    FormDescription,
-    FormField,
+    FormControl, FormField,
     FormItem,
     FormLabel,
-    FormMessage,
+    FormMessage
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { useRouter } from "next/navigation";
-import { useAuth } from "@/hooks/use-auth";
 
 const formSchema = z.object({
     city: z.string().min(3, {

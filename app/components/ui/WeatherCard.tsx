@@ -5,9 +5,7 @@ import { getCityByIP } from '@/api/weather/get-by-ip';
 import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import Loading from '@/app/components/ui/Loading';
-import { ArrowDown, ArrowUp } from 'lucide-react';
 import { useAuth } from '@/hooks/use-auth';
-import { getCityBynameAuth } from '@/api/weather/get-by-city-auth';
 
 interface WeatherCardProps {
     city?: string;

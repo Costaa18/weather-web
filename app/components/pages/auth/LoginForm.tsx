@@ -1,8 +1,7 @@
 "use client";
 
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { loginWithGoogle, loginWithGithub } from "@/lib/firebase/authUtils";
 import toast from "react-hot-toast";
 import { getFirebaseErrorMessage } from "@/lib/firebase/firebaseErrors";

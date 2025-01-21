@@ -1,14 +1,10 @@
 "use client"
 
 import {
-    BadgeCheck,
-    Bell,
     ChevronsUpDown,
     History,
-    LogOut,
-    Sparkles,
-    User,
-    IdCard,
+    LogOut, User,
+    IdCard
 } from "lucide-react"
 import {
     Avatar,
