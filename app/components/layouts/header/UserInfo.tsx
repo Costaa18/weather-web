@@ -85,21 +85,6 @@ export default function UserInfo({ user, isMobile }: UserInfoProps) {
                         <DropdownMenuSeparator />
                     </>
                 )}
-                <DropdownMenuGroup>
-                    <DropdownMenuItem>
-                        <User />
-                        <Link href="/profile/">Profile</Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                        <History />
-                        <Link href="/profile/activity">Your Activity</Link>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem>
-                        <IdCard />
-                        <Link href="/profile/card">Your Card</Link>
-                    </DropdownMenuItem>
-                </DropdownMenuGroup>
-                <DropdownMenuSeparator />
                 <DropdownMenuItem className="cursor-pointer" onClick={handleLogout}>
                     <LogOut />
                     Log Out
